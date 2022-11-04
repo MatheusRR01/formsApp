@@ -2,37 +2,47 @@
 </ion-header>
 
 <ion-content>
-  
+
   <ion-grid>
     <ion-card>
-      <img alt="Silhouette of mountains" src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg" />
-      <ion-card-header>
-          LOGIN
-      </ion-card-header>
-      <ion-card-content>
-        <ion-item>
-          <ion-label position="floating">
-            E-mail:
+      <form [formGroup]="loginForm">
+        <img alt="Silhouette of mountains"
+          src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg" />
+        <ion-item color="dark" expand="full">
+          <ion-label class="ion-text-center">
+            LOGIN
           </ion-label>
-          <ion-input></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label position="floating">
-            Senha:
-          </ion-label>
-          <ion-input></ion-input>
-        </ion-item>
-        <ion-grid size="12">
-          <ion-button expand="block" shape="round">
-            Entrar
-          </ion-button>
-        </ion-grid>
-        <ion-grid size="12">
-          <ion-button expand="block" shape="round">
-            Registrar
-          </ion-button>
-        </ion-grid>
-      </ion-card-content>
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">
+              E-mail:
+            </ion-label>
+            <ion-input type="email" formControlName="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">
+              Senha:
+            </ion-label>
+            <ion-input type="password" formControlName="senha"></ion-input>
+          </ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-button expand="block" shape="round" color="dark">Entrar</ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button expand="block" shape="round" color="dark">Registrar</ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button expand="block" shape="round" color="dark">Esqueci a senha</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </form>
     </ion-card>
   </ion-grid>
 </ion-content>
