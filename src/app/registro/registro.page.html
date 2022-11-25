@@ -46,11 +46,10 @@
             </span>
           </ng-container>
           <ion-item>
-            <ion-input placeholder="Confirmar Senha" formControlName="confirmarSenha"></ion-input>
+            <ion-input placeholder="Confirmar Senha" formControlName="confirmarsenha"></ion-input>
           </ion-item>
-          <ng-container *ngFor="let erro of mensagemErro.confirmarSenha">
-            <span class="msg-erro"
-              *ngIf="confirmarSenha.errors?.[erro.tipo] && (confirmarSenha.dirty || confirmarSenha.touched)">
+          <ng-container *ngFor="let erro of mensagemErro.confirmarsenha">
+            <span class="msg-erro" *ngIf="confirmarsenha.errors?.[erro.tipo] && (confirmarsenha.dirty || confirmarsenha.touched)">
               {{erro.aviso}}
             </span>
           </ng-container>
@@ -60,7 +59,7 @@
           <ion-grid>
             <ion-row>
               <ion-col>
-                <ion-button expand="block" shape="round" color="dark">Voltar</ion-button>
+                <ion-button expand="block" shape="round" color="dark" (click)="pVoltar()">Voltar</ion-button>
               </ion-col>
               <ion-col>
                 <ion-button expand="block" shape="round" color="dark">Sair</ion-button>

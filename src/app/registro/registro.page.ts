@@ -11,28 +11,28 @@ import { UsuarioService } from '../services/usuario.service';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
-  usuario: Usuario;
+  usuario: Usuario = new Usuario();
 
   registroForm = this.formBuilder.group({
     nome: ['', Validators.compose([Validators.required])],
     cpf: ['', Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
-    email: ['', Validators.compose([Validators.required,Validators.email])],
+    email: ['', Validators.compose([Validators.required, Validators.email])],
     senha: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-    confirmarSenha: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+    confirmarsenha: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
   });
 
   mensagemErro = {
-    nome: [{tipo: 'required', aviso:'Campo obrigatório!'}],
-    cpf: [{tipo: 'required', aviso:'Campo obrigatório!'}, {tipo:'minLength', aviso: 'Deve possuir no mínimo 11 caracteres!'}, {tipo:'maxLength', aviso: 'Deve possuir no máximo 11 caracteres!'}],
-    email: [{tipo: 'required', aviso:'Campo obrigatório!'}, {tipo:'email', aviso: 'Esse campo deve ser um e-mail válido!'}],
-    senha: [{tipo: 'required', aviso:'Campo obrigatório!'}, {tipo:'minLength', aviso: 'Deve possuir no mínimo 6 caracteres!'}],
-    confirmarSenha: [{tipo: 'required', aviso:'Campo obrigatório!'}, {tipo:'minLength', aviso: 'Deve possuir no mínimo 6 caracteres!'}]
+    nome: [{ tipo: 'required', aviso: 'Campo obrigatório!' }],
+    cpf: [{ tipo: 'required', aviso: 'Campo obrigatório!' }, { tipo: 'minLength', aviso: 'Deve possuir no mínimo 11 caracteres!' }, { tipo: 'maxLength', aviso: 'Deve possuir no máximo 11 caracteres!' }],
+    email: [{ tipo: 'required', aviso: 'Campo obrigatório!' }, { tipo: 'email', aviso: 'Esse campo deve ser um e-mail válido!' }],
+    senha: [{ tipo: 'required', aviso: 'Campo obrigatório!' }, { tipo: 'minLength', aviso: 'Deve possuir no mínimo 6 caracteres!' }],
+    confirmarsenha: [{ tipo: 'required', aviso: 'Campo obrigatório!' }, { tipo: 'minLength', aviso: 'Deve possuir no mínimo 6 caracteres!' }]
   };
 
-  constructor(private formBuilder: FormBuilder, private bd: StorageService, private usuarioService: UsuarioService, private route:Router) {}
+  constructor(private formBuilder: FormBuilder, private bd: StorageService, private usuarioService: UsuarioService, private route: Router) { }
 
   async salvar() {
-    if (this.registroForm.valid){
+    if (this.registroForm.valid) {
       this.usuario.nome = this.registroForm.get('nome').value;
       this.usuario.email = this.registroForm.get('email').value;
       this.usuario.cpf = this.registroForm.get('cpf').value;
@@ -44,31 +44,35 @@ export class RegistroPage implements OnInit {
 
       this.usuarioService.salvar(this.usuario);
 
-      this.usuarioService.salvarId(id+1);
+      this.usuarioService.salvarId(id + 1);
       alert('Sucesso!');
       this.route.navigateByUrl('/login');
-    }else{
+    } else {
       alert('Formulário inválido');
     }
   };
-  get nome(){
+  get nome() {
     return this.registroForm.get('nome');
   }
 
-  get email(){
+  get email() {
     return this.registroForm.get('email');
   }
 
-  get cpf(){
+  get cpf() {
     return this.registroForm.get('cpf');
   }
 
-  get senha(){
+  get senha() {
     return this.registroForm.get('senha');
   }
 
-  get confirmarSenha(){
-    return this.registroForm.get('confirmaSenha');
+  get confirmarsenha() {
+    return this.registroForm.get('confirmarsenha');
+  }
+
+  pVoltar(){
+    this.route.navigateByUrl('/login');
   }
 
   ngOnInit() {

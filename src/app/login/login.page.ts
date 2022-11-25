@@ -34,6 +34,10 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  pRegistro(){
+    this.route.navigateByUrl('/registro');
+  }
+
   login(){
     if(this.loginForm.valid){
       const email = this.loginForm.get('email').value;
