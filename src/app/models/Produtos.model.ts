@@ -1,7 +1,7 @@
 export class Produtos{
     id: number;
     nome: string;
-    descrição: string;
+    descricao: string;
     dataValidade: string;
-    preço: number;
+    preco: number;
 }

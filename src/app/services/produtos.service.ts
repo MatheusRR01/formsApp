@@ -12,7 +12,29 @@ export class ProdutosService {
   constructor(private storageService: StorageService) {}
 
 
-  async salvarProduto(){
-    await this.storageService.set('produtos', this.listaProdutos);
+  async salvarProduto(produto: Produtos){
+    await this.buscarTodos();
+    this.listaProdutos[produto.id] = produto;
+    await this.storageService.set('produto', this.listaProdutos);
   }
+
+  async buscarTodos() {
+    this.listaProdutos = (await this.storageService.get('usuarios')) as unknown as Produtos[];
+    if (!this.listaProdutos) {
+      this.listaProdutos = [];
+    }
+    return this.listaProdutos;
+  };
+
+  async salvarId(id: number) {
+    await this.storageService.set('idProduto', id);
+  };
+
+  async buscarId() {
+    const id = await this.storageService.get('idProduto');
+    if (!id) {
+      return 0;
+    }
+    return id;
+  };
 }

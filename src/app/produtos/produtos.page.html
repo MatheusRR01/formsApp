@@ -1,7 +1,7 @@
 <ion-header>
 </ion-header>
 
-<ion-content>
+<ion-content color="medium">
 
   <ion-grid>
     <ion-card>
@@ -13,7 +13,7 @@
         </ion-item>
         <ion-card-content>
           <ion-item>
-            <ion-input placeholder="Nome do Produto" formControlName="nome"></ion-input>
+            <ion-input placeholder="Nome do Produto:" formControlName="nome"></ion-input>
           </ion-item>
           <ng-container *ngFor="let erro of mensagemErro.nome">
             <span class="msg-erro" *ngIf="nome.errors?.[erro.tipo] && (nome.dirty || nome.touched)">
@@ -21,7 +21,7 @@
             </span>
           </ng-container>
           <ion-item>
-            <ion-input placeholder="Descrição" formControlName="descricao"></ion-input>
+            <ion-input placeholder="Descrição:" formControlName="descricao"></ion-input>
           </ion-item>
           <ng-container *ngFor="let erro of mensagemErro.descricao">
             <span class="msg-erro" *ngIf="descricao.errors?.[erro.tipo] && (descricao.dirty || descricao.touched)">
@@ -29,33 +29,32 @@
             </span>
           </ng-container>
           <ion-item>
-            <ion-input placeholder="Data de Validade" formControlName="dataValidade"></ion-input>
-          </ion-item>
-          <ng-container *ngFor="let erro of mensagemErro.dataValidade">
-            <span class="msg-erro" *ngIf="dataValidade.errors?.[erro.tipo] && (dataValidade.dirty || dataValidade.touched)">
-              {{erro.aviso}}
-            </span>
-          </ng-container>
-          <ion-item>
-            <ion-input placeholder="Preço" formControlName="preco"></ion-input>
+            <ion-label>
+              R$
+            </ion-label>
+            <ion-input type="number" placeholder="Preço:" formControlName="preco"></ion-input>
           </ion-item>
           <ng-container *ngFor="let erro of mensagemErro.preco">
             <span class="msg-erro" *ngIf="preco.errors?.[erro.tipo] && (preco.dirty || preco.touched)">
               {{erro.aviso}}
             </span>
           </ng-container>
+          <ion-item>
+            <ion-datetime class="radius1 margin" color="dark" presentation="date" min="2022-11-28T00:00:00"
+              max="2030-05-31T23:59:59" placeholder="Data de Validade:" formControlName="dataValidade">
+              <h2 slot="title">Selecione a data de validade</h2>
+            </ion-datetime>
+          </ion-item>
+          <ng-container *ngFor="let erro of mensagemErro.dataValidade">
+            <span class="msg-erro"
+              *ngIf="dataValidade.errors?.[erro.tipo] && (dataValidade.dirty || dataValidade.touched)">
+              {{erro.aviso}}
+            </span>
+          </ng-container>
           <ion-grid>
             <ion-row>
               <ion-col>
-                <ion-button expand="block" shape="round" color="dark" >Entrar</ion-button>
-              </ion-col>
-              <ion-col>
-                <ion-button expand="block" shape="round" color="dark">Registrar</ion-button>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-button expand="block" shape="round" color="dark">Esqueci a senha</ion-button>
+                <ion-button expand="block" shape="round" color="dark" (click)="salvarProduto()">Cadastrar Produto</ion-button>
               </ion-col>
             </ion-row>
           </ion-grid>
